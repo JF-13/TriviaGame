@@ -3,6 +3,14 @@ body {
   background-repeat: repeat;
 }
 
+p {
+
+}
+
+.greyBack{
+  background-color: rgba(61, 71, 86, 0.4);
+}
+
 .banner {
   background-color: rgba(61, 71, 86, 0.4);
   color: #ccc;
@@ -11,4 +19,9 @@ body {
   padding-bottom: 30px;
   font-family: 'Rokkitt', serif;
   font-size: 72px;
+}
+
+#banner2 {
+  line-height: -30%;
+  font-family: 'Satisfy', cursive;
 }
