@@ -1,14 +1,14 @@
 body {
-  background-image: url('assets/ep_natualblack.png');
+  background-image: url('assets/ep_naturalblack.png');
   background-repeat: repeat;
 }
 
 .banner {
-  background-color: #ccc;
-  color: white;
+  background-color: rgba(61, 71, 86, 0.4);
+  color: #ccc;
   text-align: center;
-  padding-top: 30px;
+  padding-top: 40px;
   padding-bottom: 30px;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Rokkitt', serif;
   font-size: 72px;
 }
