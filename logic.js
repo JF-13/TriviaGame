@@ -44,18 +44,20 @@ var jargonGif = ['https://media.giphy.com/media/kqLTiqOUMmL6/giphy.gif',
 'https://media.giphy.com/media/6KKab1ydLq1uU/giphy.gif',
 'https://media.giphy.com/media/ytUFYFYR5rs52/giphy.gif'];
 
-
+//game object hehe
 var game = {
   score: 0,
   loss: 0,
   used: [],
 };
 
+//random num func
 function randomNumber(maxNumber) {
   var x = Math.floor((Math.random() * maxNumber) + 1);
   return x;
-}
+};
 
+//picks next trivia question and filler answe ops
 function answerSet(usedArray){
   var answerOps = [];
   var used;
@@ -83,16 +85,9 @@ function answerSet(usedArray){
     answerOps.push(secondaryPicks[i]);
   }
   return answerOps;
-}
-// function clearGame() {
-//
-// }
-//
-//
-// function loadGame(){
-//
-// }
+};
 
+//shuffles picked question and filler ops array
 function shuffle(array) {
   var m = array.length, t, i;
 
@@ -108,7 +103,7 @@ function shuffle(array) {
     array[i] = t;
   }
   return array;
-}
+};
 
 
 
