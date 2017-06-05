@@ -44,59 +44,81 @@ var jargonGif = ['https://media.giphy.com/media/kqLTiqOUMmL6/giphy.gif',
 'https://media.giphy.com/media/6KKab1ydLq1uU/giphy.gif',
 'https://media.giphy.com/media/ytUFYFYR5rs52/giphy.gif'];
 
-// var game = {
-//   score: 0;
-//   loss: 0;
-//   used: [];
-// };
-//
-// function randomNumber(maxNumber) {
-//     var x = Math.floor((Math.random() * maxNumber) + 1);
-//   return x;
-// }
-//
-//
-// function answerSet(used){
-//   var pick = random(19);
-//   while (used[i] === pick) {
-//     var pick = random(19)
-//     for (var i = 0; i < used.length; i++) {
-//
-//     }
-//   }
-// }
-//
-// function clearGame() {
-//
-// }
-//
-//
-// function loadGame(){
-//
-// }
-//
-// function shuffle(array) {
-//   var m = array.length, t, i;
-//
-//   // While there remain elements to shuffle…
-//   while (m) {
-//
-//     // Pick a remaining element…
-//     i = Math.floor(Math.random() * m--);
-//
-//     // And swap it with the current element.
-//     t = array[m];
-//     array[m] = array[i];
-//     array[i] = t;
-//   }
-//   return array;
-// }
+
+var game = {
+  score: 0;
+  loss: 0;
+  used: [];
+};
+
+function randomNumber(maxNumber) {
+    var x = Math.floor((Math.random() * maxNumber) + 1);
+  return x;
+}
+
+function answerSet(game.used){
+  var pick = random(19);
+  do {
+    var pick = random(19)
+    for (var i = 0; i < game.used.length; i++) {
+
+    }
+  } while (game.used[i] === pick);
+}
+
+function clearGame() {
+
+}
+
+
+function loadGame(){
+
+}
+
+function shuffle(array) {
+  var m = array.length, t, i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  return array;
+}
 
 
 
 $(document).ready(function() {
 
 $('#start').html('play').addClass('btn btn-danger');
+
+  $('#start').on('click', function() {
+    $('#start').fadeOut('slow', function() {
+    $('#tRemaining').html('time remaining: ' + '30' + ' seconds').addClass('dialogue topDialogue').hide().fadeIn('slow');
+    $('#questionJudgement').html('At this momment what is missing?').addClass('dialogue').hide().fadeIn('slow', function () {
+
+
+
+      $('#answer1').html('banana').addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+        $('#answer2').html('banana').addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+          $('#answer3').html('banana').addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+            $('#answer4').html('banana').addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+
+            });
+          });
+        });
+      });
+
+    });
+
+    });
+  });
 
 
 });

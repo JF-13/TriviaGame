@@ -7,6 +7,10 @@ p {
 
 }
 
+.btn {
+  display: block;
+}
+
 .greyBack{
   /*background-color: rgba(61, 71, 86, 0.4);*/
 }
@@ -28,6 +32,7 @@ p {
   line-height: 0%;
   font-size: 130px;
   color: purple;
+  margin-bottom: 30px;
 }
 
 #start {
@@ -57,6 +62,42 @@ p {
   padding-top: 50px;
 }
 
+.topDialogue {
+  margin-top: 80px;
+}
+
+.dialogue {
+  text-align: center;
+  color: white;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.bottomDialogue {
+  margin-bottom: 40px;
+}
+
+.answerOps {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 24px;
+  background-color: rgba(206, 66, 244, 0.3);
+  border-width: 0px;
+  border-radius: 100px;
+  color: grey;
+}
+
+.answerOps:hover {
+  font-size: 23px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+}
+
+.answerOps:active {
+  background-color: rgba(206, 66, 244, 0.5);
+}
+
 .footer1 {
 	text-align: center;
 	color:white;
@@ -69,7 +110,7 @@ p {
   font-size: 14px;
   background-color: rgba(61, 71, 86, 0.4);
   margin-bottom: 0px;
-  
+
 }
 
 .navbar {
