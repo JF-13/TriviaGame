@@ -96,7 +96,7 @@ var jargonGif = ['https://media.giphy.com/media/kqLTiqOUMmL6/giphy.gif',
 
 $(document).ready(function() {
 
-$('#start').html('run').addClass('btn btn-danger');
+$('#start').html('play').addClass('btn btn-danger');
 
 
 });

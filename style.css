@@ -8,7 +8,7 @@ p {
 }
 
 .greyBack{
-  background-color: rgba(61, 71, 86, 0.4);
+  /*background-color: rgba(61, 71, 86, 0.4);*/
 }
 
 .banner {
@@ -18,13 +18,14 @@ p {
   padding-top: 5px;
   font-family: 'Rokkitt', serif;
   font-size: 102px;
+  line-height: 100%;
 }
 
 .banner2 {
   padding-bottom: 30px;
   font-family: 'Sacramento', cursive;
   font-weight: 100;
-  line-height: 1%;
+  line-height: 0%;
   font-size: 130px;
   color: purple;
 }
@@ -37,12 +38,40 @@ p {
   font-size: 24px;
   background-color: purple;
   border-width: 0px;
+  border-radius: 100px;
+  color: grey;
+  opacity: .7;
 }
 
 #start:hover {
   background-color: rgba(206, 66, 244, 0.2);
+  color: white;
+}
+
+#start:active {
+  background-color: rgba(206, 66, 244, 0.1);
+  opacity: .4;
 }
 
 #underBtn {
   padding-top: 50px;
+}
+
+.footer1 {
+	text-align: center;
+	color:white;
+	padding-top: 16px;
+  padding-bottom: 0px;
+	font-family: 'Oswald', sans-serif;
+	font-size: 12px;
+  opacity: .5;
+  padding-bottom: 15px;
+  font-size: 14px;
+  background-color: rgba(61, 71, 86, 0.4);
+  margin-bottom: 0px;
+  
+}
+
+.navbar {
+  padding-bottom: 0rem;
 }
