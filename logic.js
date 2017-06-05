@@ -49,6 +49,7 @@ var game = {
   score: 0,
   loss: 0,
   used: [],
+  pick: []
 };
 
 //random num func
@@ -62,7 +63,7 @@ function answerSet(usedArray){
   var answerOps = [];
   var used;
   do {
-    game.pick = randomNumber(19);
+    game.pick = randomNumber(18);
     used = game.used.includes(game.pick);
     if (used === false) {
       answerOps.push(game.pick);
@@ -73,7 +74,7 @@ function answerSet(usedArray){
   var secondaryPicks = [];
    do {
      do {
-      var tempPick = randomNumber(19);
+      var tempPick = randomNumber(18);
       used = secondaryPicks.includes(tempPick);
       if (used === false) {
         secondaryPicks.push(tempPick);
@@ -105,8 +106,6 @@ function shuffle(array) {
   return array;
 };
 
-
-
 $(document).ready(function() {
 
 $('#start').html('play').addClass('btn btn-danger');
@@ -115,27 +114,25 @@ $('#start').html('play').addClass('btn btn-danger');
 
     var answerOps = answerSet(game.used);
     var displayOps = shuffle(answerOps);
+    console.log(displayOps);
 
-    $('#start').fadeOut('slow', function() {
+    $('#start').fadeOut('fast', function() {
     $('#tRemaining').html('time remaining: ' + '30' + ' seconds').addClass('dialogue topDialogue').hide().fadeIn('slow');
-    $('#questionJudgement').html('At this momment what is missing?').addClass('dialogue').hide().fadeIn('slow', function () {
+      $('#questionJudgement').html(jargonDef[game.pick]).addClass('dialogue').hide().fadeIn('slow', function () {
 
+        $('#answer1').html(jargon[displayOps[0]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+          $('#answer2').html(jargon[displayOps[1]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+            $('#answer3').html(jargon[displayOps[2]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+              $('#answer4').html(jargon[displayOps[3]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
 
-
-      $('#answer1').html(jargon[displayOps[0]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-        $('#answer2').html(jargon[displayOps[1]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-          $('#answer3').html(jargon[displayOps[2]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-            $('#answer4').html(jargon[displayOps[3]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-
+              });
             });
           });
         });
+
       });
-
     });
 
-    });
   });
-
 
 });
