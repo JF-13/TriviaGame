@@ -91,7 +91,8 @@ p {
   font-size: 23px;
   border-width: 1px;
   border-style: solid;
-  border-color: grey;
+  border-color: purple;
+  color: white;
 }
 
 .answerOps:active {
@@ -100,7 +101,7 @@ p {
 
 .footer1 {
 	text-align: center;
-	color:white;
+	color: #ccc;
 	padding-top: 16px;
   padding-bottom: 0px;
 	font-family: 'Oswald', sans-serif;
@@ -108,11 +109,16 @@ p {
   opacity: .5;
   padding-bottom: 15px;
   font-size: 14px;
-  background-color: rgba(61, 71, 86, 0.4);
+  /*background-color: rgba(61, 71, 86, 0.4);*/
   margin-bottom: 0px;
 
 }
 
 .navbar {
   padding-bottom: 0rem;
+}
+
+.navbar-default {
+  background-color: rgba(61, 71, 86, 0.4);
+
 }

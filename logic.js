@@ -46,34 +46,52 @@ var jargonGif = ['https://media.giphy.com/media/kqLTiqOUMmL6/giphy.gif',
 
 
 var game = {
-  score: 0;
-  loss: 0;
-  used: [];
+  score: 0,
+  loss: 0,
+  used: [],
 };
 
 function randomNumber(maxNumber) {
-    var x = Math.floor((Math.random() * maxNumber) + 1);
+  var x = Math.floor((Math.random() * maxNumber) + 1);
   return x;
 }
 
-function answerSet(game.used){
-  var pick = random(19);
+function answerSet(usedArray){
+  var answerOps = [];
+  var used;
   do {
-    var pick = random(19)
-    for (var i = 0; i < game.used.length; i++) {
-
+    game.pick = randomNumber(19);
+    used = game.used.includes(game.pick);
+    if (used === false) {
+      answerOps.push(game.pick);
+      game.used.push(game.pick);
     }
-  } while (game.used[i] === pick);
+  } while(used);
+
+  var secondaryPicks = [];
+   do {
+     do {
+      var tempPick = randomNumber(19);
+      used = secondaryPicks.includes(tempPick);
+      if (used === false) {
+        secondaryPicks.push(tempPick);
+      }
+     } while (used);
+  } while(secondaryPicks.length < 3);
+
+  for (var i = 0; i < secondaryPicks.length; i++) {
+    answerOps.push(secondaryPicks[i]);
+  }
+  return answerOps;
 }
-
-function clearGame() {
-
-}
-
-
-function loadGame(){
-
-}
+// function clearGame() {
+//
+// }
+//
+//
+// function loadGame(){
+//
+// }
 
 function shuffle(array) {
   var m = array.length, t, i;
@@ -99,16 +117,20 @@ $(document).ready(function() {
 $('#start').html('play').addClass('btn btn-danger');
 
   $('#start').on('click', function() {
+
+    var answerOps = answerSet(game.used);
+    var displayOps = shuffle(answerOps);
+
     $('#start').fadeOut('slow', function() {
     $('#tRemaining').html('time remaining: ' + '30' + ' seconds').addClass('dialogue topDialogue').hide().fadeIn('slow');
     $('#questionJudgement').html('At this momment what is missing?').addClass('dialogue').hide().fadeIn('slow', function () {
 
 
 
-      $('#answer1').html('banana').addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-        $('#answer2').html('banana').addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-          $('#answer3').html('banana').addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-            $('#answer4').html('banana').addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+      $('#answer1').html(jargon[displayOps[0]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+        $('#answer2').html(jargon[displayOps[1]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+          $('#answer3').html(jargon[displayOps[2]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+            $('#answer4').html(jargon[displayOps[3]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
 
             });
           });
