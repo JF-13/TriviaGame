@@ -45,7 +45,7 @@ var jargonGif = ['https://media.giphy.com/media/kqLTiqOUMmL6/giphy.gif',
 'https://media.giphy.com/media/ytUFYFYR5rs52/giphy.gif'];
 
 //game object hehe
-var game = {
+var game = 
   score: 0,
   loss: 0,
   used: [],
