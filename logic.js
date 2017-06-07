@@ -1,3 +1,120 @@
+$(document).ready(function() {
+
+  $('#start').html('play').addClass('btn btn-danger');
+    $('#start').on('click', function() {
+      startGame();
+
+  });
+});
+
+//GAME OBJECT
+var game = {
+  score: 0,
+  loss: 0,
+  used: [],
+  pick: []
+};
+
+//VARIABLES
+var timer;
+var time = 5;
+
+//START
+function startGame() {
+  var answerOps = answerSet(game.used);
+  var displayOps = shuffle(answerOps);
+
+  $('#start').fadeOut('fast', function() {
+
+  startTimer(1000);
+
+  $('#tRemaining').html('time remaining: ' + '30' + ' seconds').addClass('dialogue topDialogue').hide().fadeIn('slow');
+    $('#questionJudgement').html(jargonDef[game.pick]).addClass('dialogue').hide().fadeIn('slow', function () {
+
+      $('#answer1').html(jargon[displayOps[0]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+        $('#answer2').html(jargon[displayOps[1]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+          $('#answer3').html(jargon[displayOps[2]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+            $('#answer4').html(jargon[displayOps[3]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+
+            });
+          });
+        });
+      });
+
+    });
+
+  });
+}
+
+//RANDOM NUMBER FUNCTION
+function randomNumber(maxNumber) {
+  var x = Math.floor((Math.random() * maxNumber) + 1);
+  return x;
+}
+
+//MAKES RANDOM JARGON AND FILLER OPTIONS ARRAY
+function answerSet(usedArray){
+  var answerOps = [];
+  var used;
+  do {
+    game.pick = randomNumber(18);
+    used = game.used.includes(game.pick);
+    if (used === false) {
+      answerOps.push(game.pick);
+      game.used.push(game.pick);
+    }
+  } while(used);
+  var secondaryPicks = [];
+   do {
+     do {
+      var tempPick = randomNumber(18);
+      used = secondaryPicks.includes(tempPick);
+      var samePick = (tempPick === game.pick);
+      if (used === false && samePick === false) {
+        secondaryPicks.push(tempPick);
+      }
+    } while (used);
+  } while(secondaryPicks.length < 3);
+  for (var i = 0; i < secondaryPicks.length; i++) {
+    answerOps.push(secondaryPicks[i]);
+  }
+  return answerOps;
+}
+
+//SHUFFLES JARGON PICK AND FILLER OPS ARRAY
+function shuffle(array) {
+  var m = array.length, t, i;
+  // While there remain elements to shuffle…
+  while (m) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  return array;
+}
+
+//START TIMER COUNTDOWN
+function startTimer (interval) {
+  timer = setInterval(function(){ myTimer(); }, interval);
+  function myTimer() {
+    time--;
+    $('#tRemaining').html('time remaining: ' + time + ' seconds').addClass('dialogue topDialogue');
+
+    if (time === 0) {
+      stopTimer();
+    }
+  }
+}
+
+//STOP TIMER COUNTDOWN
+function stopTimer() {
+  clearInterval(timer);
+}
+
+//DATA ARRAYS: JARGON -> JARGON DEFINITIONS -> JARGON GIF LINKS
 var jargon = ['Yoda Conditions', 'Smug Report', 'A duck', 'Refunctioning',
 'Heisenburg', 'Jimmy', 'Higgins Bugson', 'Unicorny', 'Hindenbug',
 'Fear-driven Development', 'Hydra', 'Common Law Feature',
@@ -43,96 +160,3 @@ var jargonGif = ['https://media.giphy.com/media/kqLTiqOUMmL6/giphy.gif',
 'https://media.giphy.com/media/NlG1Q5k7AMpy0/giphy.gif',
 'https://media.giphy.com/media/6KKab1ydLq1uU/giphy.gif',
 'https://media.giphy.com/media/ytUFYFYR5rs52/giphy.gif'];
-
-//game object hehe
-var game = 
-  score: 0,
-  loss: 0,
-  used: [],
-  pick: []
-};
-
-//random num func
-function randomNumber(maxNumber) {
-  var x = Math.floor((Math.random() * maxNumber) + 1);
-  return x;
-};
-
-//picks next trivia question and filler answe ops
-function answerSet(usedArray){
-  var answerOps = [];
-  var used;
-  do {
-    game.pick = randomNumber(18);
-    used = game.used.includes(game.pick);
-    if (used === false) {
-      answerOps.push(game.pick);
-      game.used.push(game.pick);
-    }
-  } while(used);
-
-  var secondaryPicks = [];
-   do {
-     do {
-      var tempPick = randomNumber(18);
-      used = secondaryPicks.includes(tempPick);
-      if (used === false) {
-        secondaryPicks.push(tempPick);
-      }
-     } while (used);
-  } while(secondaryPicks.length < 3);
-
-  for (var i = 0; i < secondaryPicks.length; i++) {
-    answerOps.push(secondaryPicks[i]);
-  }
-  return answerOps;
-};
-
-//shuffles picked question and filler ops array
-function shuffle(array) {
-  var m = array.length, t, i;
-
-  // While there remain elements to shuffle…
-  while (m) {
-
-    // Pick a remaining element…
-    i = Math.floor(Math.random() * m--);
-
-    // And swap it with the current element.
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-  return array;
-};
-
-$(document).ready(function() {
-
-$('#start').html('play').addClass('btn btn-danger');
-
-  $('#start').on('click', function() {
-
-    var answerOps = answerSet(game.used);
-    var displayOps = shuffle(answerOps);
-    console.log(displayOps);
-
-    $('#start').fadeOut('fast', function() {
-    $('#tRemaining').html('time remaining: ' + '30' + ' seconds').addClass('dialogue topDialogue').hide().fadeIn('slow');
-      $('#questionJudgement').html(jargonDef[game.pick]).addClass('dialogue').hide().fadeIn('slow', function () {
-
-        $('#answer1').html(jargon[displayOps[0]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-          $('#answer2').html(jargon[displayOps[1]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-            $('#answer3').html(jargon[displayOps[2]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-              $('#answer4').html(jargon[displayOps[3]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-
-              });
-            });
-          });
-        });
-
-      });
-    });
-
-  });
-
-});

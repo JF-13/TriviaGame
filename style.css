@@ -29,7 +29,7 @@ p {
   padding-bottom: 30px;
   font-family: 'Sacramento', cursive;
   font-weight: 100;
-  line-height: 0%;
+  line-height: 0;
   font-size: 130px;
   color: purple;
   margin-bottom: 30px;
@@ -42,7 +42,7 @@ p {
   font-family: 'Share Tech Mono', monospace;
   font-size: 24px;
   background-color: purple;
-  border-width: 0px;
+  border-width: 0;
   border-radius: 100px;
   color: grey;
   opacity: .7;
