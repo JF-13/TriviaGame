@@ -7,9 +7,41 @@ p {
 
 }
 
-.btn {
-  display: block;
+.dialogue {
+  text-align: center;
+  color: white;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 32px;
+  margin-bottom: 15px;
 }
+
+@-webkit-keyframes typing { from { width: 0; } }
+@-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
+
+.gotIt {
+  margin: 0 auto;
+	font: bold 2em monospace;
+  color: rgb(0, 213, 9);
+	border-right: .1em solid rgb(0, 213, 9);
+	width: calc(0.55em * 14);
+	width: 14ch;
+	white-space: nowrap;
+	overflow: hidden;
+	-webkit-animation: typing 3s steps(14, end),
+	blink-caret .5s step-end infinite alternate;
+}
+
+.spacing {
+  padding-top: 50px;
+}
+
+.wrong {
+  color: red;
+  border-right: red;
+  font-size: 60px;
+}
+
+
 
 .greyBack{
   /*background-color: rgba(61, 71, 86, 0.4);*/
@@ -59,23 +91,25 @@ p {
 }
 
 #underBtn {
-  padding-top: 50px;
+  padding-top: 0px;
 }
 
 .topDialogue {
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
-.dialogue {
-  text-align: center;
-  color: white;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 32px;
-  margin-bottom: 15px;
-}
+
 
 .bottomDialogue {
   margin-bottom: 40px;
+}
+
+.answerButtons {
+  text-align: center;
+}
+
+.centerBtn {
+  display: block;
 }
 
 .answerOps {
@@ -99,6 +133,11 @@ p {
   background-color: rgba(206, 66, 244, 0.5);
 }
 
+.gif {
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
 .footer1 {
 	text-align: center;
 	color: #ccc;
@@ -120,5 +159,25 @@ p {
 
 .navbar-default {
   background-color: rgba(61, 71, 86, 0.4);
+
+}
+
+
+@media screen and (max-width: 990px) {
+
+#gif {
+  margin-bottom: 75px;
+}
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+
+}
+
+@media screen and (max-width: 640px) {
+
 
 }

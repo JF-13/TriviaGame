@@ -1,10 +1,15 @@
 $(document).ready(function() {
 
-  $('#start').html('play').addClass('btn btn-danger');
-    $('#start').on('click', function() {
-      startGame();
+  $('#start').on('click', function() {
+    startGame();
 
   });
+
+  $(".answerButtons").click(function(e){
+    var idClicked = e.target.id;
+    checkAnswer(idClicked);
+  });
+
 });
 
 //GAME OBJECT
@@ -17,34 +22,140 @@ var game = {
 
 //VARIABLES
 var timer;
-var time = 5;
+var time = 30;
 
-//START
-function startGame() {
-  var answerOps = answerSet(game.used);
-  var displayOps = shuffle(answerOps);
+// //SET UP NEXT Q
+// function nextQuestion() {
+//   startGame();
+// }
 
-  $('#start').fadeOut('fast', function() {
+//CHECK ANSWER AND RESPOND IF CORRECT
+function checkAnswer(idClicked1) {
 
-  startTimer(1000);
+    if (($('#' + idClicked1).html()) === jargon[game.pick]){
+      stopTimer();
+      $('#spacing').html('').addClass('spacing');
+      $('#tRemaining').html('<div class="col-m-12 topMargin">' + 'You got it!' + '</div>').removeClass('topDialogue').addClass('gotIt');
+      $('#questionJudgement').html(jargon[game.pick]);
 
-  $('#tRemaining').html('time remaining: ' + '30' + ' seconds').addClass('dialogue topDialogue').hide().fadeIn('slow');
-    $('#questionJudgement').html(jargonDef[game.pick]).addClass('dialogue').hide().fadeIn('slow', function () {
-
-      $('#answer1').html(jargon[displayOps[0]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-        $('#answer2').html(jargon[displayOps[1]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-          $('#answer3').html(jargon[displayOps[2]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
-            $('#answer4').html(jargon[displayOps[3]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+      $('#answer1').hide().fadeOut('fast', function() {
+        $('#answer2').hide().fadeOut('fast', function() {
+          $('#answer3').hide().fadeOut('fast', function() {
+            $('#answer4').hide().fadeOut('fast', function() {
 
             });
           });
         });
       });
+      $('#gif').html('<img src="' + jargonGif[game.pick] + '" style="width:100%">').addClass('gif');
+      game.score++;
+      setTimeout(function(){
+        $('#gif').html('').removeClass('gif');
+        time = 30;
+        startGame();
+      }, 5000);
 
+    } else if (($('#' + idClicked1).html()) != jargon[game.pick]) {
+      incorrectInput();
+      setTimeout(function(){
+        time = 30;
+        game.loss++;
+        startGame();
+      }, 5000);
+    }
+}
+
+
+//NO INPUT
+function noInput() {
+  stopTimer();
+
+  $('#spacing').html('').addClass('spacing');
+  $('#tRemaining').html('<div class="col-m-12">' + 'Time is up!' +  '</div>').removeClass('topDialogue').addClass('gotIt wrong');
+  $('#questionJudgement').html('');
+
+  $('#answer1').hide().fadeOut('fast', function() {
+    $('#answer2').hide().fadeOut('fast', function() {
+      $('#answer3').hide().fadeOut('fast', function() {
+        $('#answer4').hide().fadeOut('fast', function() {
+
+        });
+      });
     });
+  });
+  setTimeout(function(){
+    startGame();
+  }, 5000);
 
+}
+
+//INCORRECT INPUT
+function incorrectInput() {
+
+  stopTimer();
+  $('#spacing').html('').addClass('spacing');
+  $('#tRemaining').html('<div class="col-m-12">' + 'Nope!' + '</div>').removeClass('topDialogue').addClass('gotIt wrong');
+  $('#questionJudgement').html(jargon[game.pick]);
+
+  $('#answer1').hide().fadeOut('fast', function() {
+    $('#answer2').hide().fadeOut('fast', function() {
+      $('#answer3').hide().fadeOut('fast', function() {
+        $('#answer4').hide().fadeOut('fast', function() {
+
+        });
+      });
+    });
   });
 }
+
+//START
+function startGame() {
+  if (game.score < 5 && game.loss < 3) {
+    var answerOps = answerSet(game.used);
+    var displayOps = shuffle(answerOps);
+
+    $('#start').fadeOut('fast', function() {
+    $('#spacing').html('').removeClass('spacing');
+    startTimer(1000);
+
+    $('#tRemaining').html('time remaining: ' + '30' + ' seconds').addClass('dialogue topDialogue').hide().fadeIn('slow').removeClass('gotIt wrong');
+      $('#questionJudgement').html(jargonDef[game.pick]).addClass('dialogue').hide().fadeIn('slow', function () {
+
+        $('#answer1').html(jargon[displayOps[0]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+          $('#answer2').html(jargon[displayOps[1]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+            $('#answer3').html(jargon[displayOps[2]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+              $('#answer4').html(jargon[displayOps[3]]).addClass('btn dialogue answerOps').hide().fadeIn('slow', function() {
+
+              });
+            });
+          });
+        });
+
+      });
+
+    });
+  } else {
+    $('#tRemaining').html('You got:' + game.score + ' pts').addClass('dialogue topDialogue gotIt').hide().fadeIn('slow').removeClass('wrong');
+    $('#questionJudgement').html('Try again!').addClass('dialogue').hide().fadeIn('slow');
+    $('#start').html('play again').addClass('btn btn-danger').fadeIn().on('click', function() {
+      clearScore();
+      startGame();
+    });
+  }
+}
+
+//CLEAR SCORE
+function clearScore() {
+  game.score = 0;
+  game.loss = 0;
+  game.used = [];
+  game.pick = [];
+
+  //VARIABLES
+  var timer;
+  var time = 30;
+}
+
 
 //RANDOM NUMBER FUNCTION
 function randomNumber(maxNumber) {
@@ -102,9 +213,12 @@ function startTimer (interval) {
   function myTimer() {
     time--;
     $('#tRemaining').html('time remaining: ' + time + ' seconds').addClass('dialogue topDialogue');
-
+    //IF TIME RUNS OUT
     if (time === 0) {
       stopTimer();
+      noInput();
+      time = 30;
+      game.loss++;
     }
   }
 }
