@@ -3,10 +3,6 @@ body {
   background-repeat: repeat;
 }
 
-p {
-
-}
-
 .dialogue {
   text-align: center;
   color: white;
@@ -15,20 +11,28 @@ p {
   margin-bottom: 15px;
 }
 
-@-webkit-keyframes typing { from { width: 0; } }
-@-webkit-keyframes blink-caret { 50% { border-color: transparent; } }
+@-webkit-keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@-webkit-keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  }
+}
 
 .gotIt {
   margin: 0 auto;
-	font: bold 2em monospace;
+  font: bold 2em monospace;
   color: rgb(0, 213, 9);
-	border-right: .1em solid rgb(0, 213, 9);
-	width: calc(0.55em * 14);
-	width: 14ch;
-	white-space: nowrap;
-	overflow: hidden;
-	-webkit-animation: typing 3s steps(14, end),
-	blink-caret .5s step-end infinite alternate;
+  border-right: .1em solid rgb(0, 213, 9);
+  width: calc(0.55em * 14);
+  width: 14ch;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: typing 3s steps(14, end), blink-caret .5s step-end infinite alternate;
 }
 
 .spacing {
@@ -39,12 +43,6 @@ p {
   color: red;
   border-right: red;
   font-size: 60px;
-}
-
-
-
-.greyBack{
-  /*background-color: rgba(61, 71, 86, 0.4);*/
 }
 
 .banner {
@@ -91,14 +89,12 @@ p {
 }
 
 #underBtn {
-  padding-top: 0px;
+  padding-top: 0;
 }
 
 .topDialogue {
   margin-top: 40px;
 }
-
-
 
 .bottomDialogue {
   margin-bottom: 40px;
@@ -116,7 +112,7 @@ p {
   font-family: 'Share Tech Mono', monospace;
   font-size: 24px;
   background-color: rgba(206, 66, 244, 0.3);
-  border-width: 0px;
+  border-width: 0;
   border-radius: 100px;
   color: grey;
 }
@@ -139,45 +135,30 @@ p {
 }
 
 .footer1 {
-	text-align: center;
-	color: #ccc;
-	padding-top: 16px;
-  padding-bottom: 0px;
-	font-family: 'Oswald', sans-serif;
-	font-size: 12px;
+  text-align: center;
+  color: #ccc;
+  padding-top: 16px;
+  font-family: 'Oswald', sans-serif;
   opacity: .5;
   padding-bottom: 15px;
   font-size: 14px;
-  /*background-color: rgba(61, 71, 86, 0.4);*/
-  margin-bottom: 0px;
-
+  margin-bottom: 0;
 }
 
 .navbar {
-  padding-bottom: 0rem;
+  padding-bottom: 0;
 }
 
 .navbar-default {
   background-color: rgba(61, 71, 86, 0.4);
-
 }
-
 
 @media screen and (max-width: 990px) {
-
-#gif {
-  margin-bottom: 75px;
+  #gif {
+    margin-bottom: 75px;
+  }
 }
 
-}
+@media screen and (max-width: 768px) {}
 
-
-@media screen and (max-width: 768px) {
-
-
-}
-
-@media screen and (max-width: 640px) {
-
-
-}
+@media screen and (max-width: 640px) {}
