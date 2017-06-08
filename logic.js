@@ -135,8 +135,8 @@ function startGame() {
 
     });
   } else {
-    $('#tRemaining').html('You got:' + game.score + ' pts').addClass('dialogue topDialogue gotIt').hide().fadeIn('slow').removeClass('wrong');
-    $('#questionJudgement').html('Try again!').addClass('dialogue').hide().fadeIn('slow');
+    $('#tRemaining').html('You got: ' + game.score + ' pts').addClass('dialogue topDialogue gotIt').hide().fadeIn('slow').removeClass('wrong');
+    $('#questionJudgement').html('You got: ' + game.loss + ' wrong').addClass('dialogue').hide().fadeIn('slow');
     $('#start').html('play again').addClass('btn btn-danger').fadeIn().on('click', function() {
       clearScore();
       startGame();
