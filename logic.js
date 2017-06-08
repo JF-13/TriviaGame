@@ -136,7 +136,7 @@ function startGame() {
     });
   } else {
     $('#tRemaining').html('You got: ' + game.score + ' pts').addClass('dialogue topDialogue gotIt').hide().fadeIn('slow').removeClass('wrong');
-    $('#questionJudgement').html('You got: ' + game.loss + ' wrong').addClass('dialogue').hide().fadeIn('slow');
+    $('#questionJudgement').html('Wrong answers: ' + game.loss).addClass('dialogue').hide().fadeIn('slow');
     $('#start').html('play again').addClass('btn btn-danger').fadeIn().on('click', function() {
       clearScore();
       startGame();
