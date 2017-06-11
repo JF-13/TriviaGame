@@ -3,11 +3,11 @@
 // document ready + function
 // game object declaration
 // variables - global variables declaration
+// clearScore - clears variables for next games
 // checkAnswer - check answer and run if correct else run “incorrectInput” function
 // noInput - fires when timer runs out without input
 // incorrectInput - fires when incorrect snswer button is clicked
 // startGame - sets up questions
-// clearScore - clears variables for next games
 // randomNumber - returns a random number depending on integer passed
 // answerSet - constructs answer option set
 // shuffle - shuffles answer option set
@@ -39,6 +39,17 @@ var game = {
 var timer;
 var time = 30;
 
+//CLEAR SCORE
+function clearScore() {
+  game.score = 0;
+  game.loss = 0;
+  game.used = [];
+  game.pick = [];
+  //VARIABLES
+  var timer;
+  var time = 30;
+}
+
 //CHECK ANSWER AND RESPOND IF CORRECT
 function checkAnswer(idClicked1) {
   if (($('#' + idClicked1).html()) === jargon[game.pick]) {
@@ -54,7 +65,9 @@ function checkAnswer(idClicked1) {
       });
     });
     $('#gif').html('<img src="' + jargonGif[game.pick] + '" style="width:100%">').addClass('gif');
+    console.log('before correct' + game.score);
     game.score++;
+    console.log('after addition' + game.score);
     setTimeout(function() {
       $('#gif').html('').removeClass('gif');
       time = 30;
@@ -107,7 +120,7 @@ function incorrectInput() {
 
 //START
 function startGame() {
-  if (game.score < 5 && game.loss < 3) {
+  if (game.loss < 3 && game.score < 5) {
     var answerOps = answerSet(game.used);
     var displayOps = shuffle(answerOps);
     $('#start').fadeOut('fast', function() {
@@ -125,25 +138,13 @@ function startGame() {
       });
     });
   } else {
+    stopTimer();
     $('#tRemaining').html('You got: ' + game.score + ' pts').addClass('dialogue topDialogue gotIt').hide().fadeIn('slow').removeClass('wrong');
     $('#questionJudgement').html('Wrong answers: ' + game.loss).addClass('dialogue').hide().fadeIn('slow');
+    clearScore();
     $('#start').html('play again').addClass('btn btn-danger').fadeIn().on('click', function() {
-      clearScore();
-      startGame();
     });
   }
-}
-
-//CLEAR SCORE
-function clearScore() {
-  game.score = 0;
-  game.loss = 0;
-  game.used = [];
-  game.pick = [];
-
-  //VARIABLES
-  var timer;
-  var time = 30;
 }
 
 //RANDOM NUMBER FUNCTION
@@ -198,13 +199,17 @@ function shuffle(array) {
 }
 
 //START TIMER COUNTDOWN
+  var x = 0;
 function startTimer(interval) {
+x += 1;
+console.log('this is ' + x);
   timer = setInterval(function() {
     myTimer();
   }, interval);
 
   function myTimer() {
     time--;
+    console.log('something is running!');
     $('#tRemaining').html('time remaining: ' + time + ' seconds').addClass('dialogue topDialogue');
     //IF TIME RUNS OUT
     if (time === 0) {
@@ -219,6 +224,7 @@ function startTimer(interval) {
 //STOP TIMER COUNTDOWN
 function stopTimer() {
   clearInterval(timer);
+  console.log('ive been stopped!');
 }
 
 //DATA ARRAYS: JARGON -> JARGON DEFINITIONS -> JARGON GIF LINKS
