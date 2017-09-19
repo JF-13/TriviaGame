@@ -1,4 +1,4 @@
-# Programming Languages Trivia Game
+# Programming Lingo Trivia Game
 
 ## this responsive game has been created using jQuery and bootstrap.
 
