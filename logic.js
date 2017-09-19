@@ -65,9 +65,7 @@ function checkAnswer(idClicked1) {
       });
     });
     $('#gif').html('<img src="' + jargonGif[game.pick] + '" style="width:100%">').addClass('gif');
-    console.log('before correct' + game.score);
     game.score++;
-    console.log('after addition' + game.score);
     setTimeout(function() {
       $('#gif').html('').removeClass('gif');
       time = 30;
@@ -199,17 +197,13 @@ function shuffle(array) {
 }
 
 //START TIMER COUNTDOWN
-  var x = 0;
 function startTimer(interval) {
-x += 1;
-console.log('this is ' + x);
   timer = setInterval(function() {
     myTimer();
   }, interval);
 
   function myTimer() {
     time--;
-    console.log('something is running!');
     $('#tRemaining').html('time remaining: ' + time + ' seconds').addClass('dialogue topDialogue');
     //IF TIME RUNS OUT
     if (time === 0) {
@@ -224,7 +218,6 @@ console.log('this is ' + x);
 //STOP TIMER COUNTDOWN
 function stopTimer() {
   clearInterval(timer);
-  console.log('ive been stopped!');
 }
 
 //DATA ARRAYS: JARGON -> JARGON DEFINITIONS -> JARGON GIF LINKS
